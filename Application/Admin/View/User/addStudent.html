@@ -1,0 +1,54 @@
+<include file="Public/header" />
+
+<main role="main">
+    <div class="container">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">添加单个学生</div>
+                <div class="panel-body">
+                    <form action="{:U('dispatcher')}" method="post" >
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                            <input type="text" name="stu_name" class="form-control" placeholder="姓名">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-tags"></span></span>
+                            <input type="text" name="stu_id" class="form-control" placeholder="学号">
+                        </div>
+                        <input type="hidden" name="todo" value="{:base64_encode('addStudentOne')}" />
+                        <button type="submit" class="btn btn-info btn-block">确定添加</button>
+                    </form>
+                </div>
+            </div>
+            <div class="panel panel-danger">
+                <div class="panel-heading">从 <b>csv</b> 文件中导入</div>
+                <div class="panel-body">
+                    <blockquote>
+                        导入说明
+                        <ol>
+                            <li>请用将学生名单保存为 <b>CSV(逗号分隔)(*.csv)</b> 格式</li>
+                            <li>请使用 <b>UTF-8</b> 格式保存文件</li>
+                            <li>请不要添加表头</li>
+                            <li>数据分为两列：
+                                <ul>
+                                    <li>第一列：学号</li>
+                                    <li>第二列：姓名</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </blockquote>
+                    <form action="{:U('dispatcher')}" enctype="multipart/form-data" method="post" >
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-file"></span></span>
+                            <input type="file" name="file" class="form-control" />
+                        </div>
+                        <input type="hidden" name="todo" value="{:base64_encode('addStudentAll')}" />
+                        <button type="submit" class="btn btn-danger btn-block">开始导入</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<include file="Public/footer" />

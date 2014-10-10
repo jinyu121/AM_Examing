@@ -1,0 +1,58 @@
+<include file="Public:header" />
+
+<main role="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <if condition="count($problems) eq 0 ">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">暂没有试题</div>
+                        <div class="panel-body">
+                            <blockquote>
+                                请等待老师上传试题 ……
+                            </blockquote>
+                        </div>
+                    </div>
+                </if>
+                <volist name="problems" id="oneProblem">
+                <div class="panel panel-info">
+                    <div class="panel-heading">{$oneProblem.title}</div>
+                    <div class="panel-body">
+                        <blockquote>
+                            {$oneProblem.description}
+                        </blockquote>
+                        <div class="files">
+                            <div class="media">
+                                <div class="media-image pull-left">
+                                    <span class="glyphicon glyphicon-download-alt"></span>
+                                </div>
+                                <if condition=" time() egt strtotime($oneProblem['time']) "> 
+                                    <form action="{:U('downloadProblem')}" method="post">
+                                        <input type="hidden" name="dir" value="{$oneProblem.downloadDir|base64_encode}">
+                                        <div class="pull-right">
+                                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-download-alt"></span> 下载试题</button>
+                                    </form>
+                                </div>
+                                </if>
+                                
+                                <div class="media-body">
+                                    <h4 class="media-heading">附件信息</h4>
+                                    <div class="media-info">
+                                        <ul class="list-unstyled">
+                                            <li>开始时间：{$oneProblem.time}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </volist>
+                
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<include file="Public:footer" />

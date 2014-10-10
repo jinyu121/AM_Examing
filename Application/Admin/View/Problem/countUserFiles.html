@@ -1,0 +1,43 @@
+<include file="Public/header" />
+
+<main role="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-info">
+                    <div class="panel-heading">已经上传的文件</div>
+                    <div class="panel-body">
+                        <blockquote>
+                            <ul>
+                                <li>学生提交在 <b>Uploads</b> 文件夹下。</li>
+                                <li>文件夹自动命名方式为： <b>学号_姓名</b> 。</li>
+                                <li>中文文件名会乱码。请提示同学们上传时不要使用中文文件名。</li>
+                            </ul>
+                        </blockquote>
+                        <div class="files">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>上传者</th>
+                                        <th>文件名</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <volist name="files" id="oneFile">
+                                    <tr>
+                                        <td>{$oneFile.fileUploader}</td>
+                                        <td>{$oneFile.fileName}</td>
+                                </tr>
+                                </volist>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<include file="Public/footer" />

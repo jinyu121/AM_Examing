@@ -1,0 +1,74 @@
+<include file="Public/header" />
+
+<main role="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-info">
+                    <div class="panel-heading">上传文件</div>
+                    <div class="panel-body">
+                        <blockquote>
+                            文件上传说明：
+                            <ol>
+                                <li>新上传的文件会<b>覆盖</b>旧的同名文件</li>
+                                <li>一次可上传多个文件，但建议每次只上传一个文件</li>
+                                <li>请<b>尽量避免使用中文文件名</b></li>
+                                <li>文件上传大小限制： {$Think.config.UPLOAD_MAX_SIZE} 字节</li>
+                            </ol>
+                        </blockquote>
+                        <form action="{:U('uploadFile')}" enctype="multipart/form-data" method="post" >
+                            <div class="input-group">
+                                <input type="file" name="answerFile[]" class="form-control" multiple />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">上传</button>
+                                </span>
+                            </div><!-- /input-group -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-info">
+                    <div class="panel-heading">已经上传的文件</div>
+                    <div class="panel-body">
+                        <blockquote>
+                            删除文件请三思！
+                        </blockquote>
+                        <div class="files">
+                            <ul>
+                                <volist name="files" id="oneFile">
+                                    <li>
+                                        <div class="media">
+                                            <div class="media-image pull-left">
+                                            <span class="glyphicon glyphicon-paperclip"></span>
+                                        </div>
+                                        <div class="pull-right">
+                                            <form action="{:U('deleteFile')}" method="post" >
+                                                <input type="hidden" name="fileName" value="{$oneFile.fileName|base64_encode}" />
+                                                <button type="submit" class="btn btn-danger">删除</button>
+                                            </form>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">{$oneFile.fileName}</h4>
+                                            <div class="media-info">
+                                                <ul class="list-unstyled">
+                                                    <li>文件大小： {$oneFile.fileSize} 字节</li>
+                                                    <li>上传时间： {$oneFile.fileTime|date="Y-m-d H:i:s",###} </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                </volist>
+   
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<include file="Public/footer" />

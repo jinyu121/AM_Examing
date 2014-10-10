@@ -1,0 +1,66 @@
+<include file="Public/header" />
+
+<main role="main">
+    <div class="container dashboardContainer">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">概览</div>
+                <div class="panel-body">
+                    <p>总人数：  <b>{:count($signed)+count($unsigned)}</b> 人。</p>
+                    <p>已经签到： 共计 <b>{$signed|count}</b> 人。</p>
+                    <p>还未签到： 共计 <b>{$unsigned|count}</b> 人。</p>
+                </div>
+            </div>
+            <div class="panel panel-success">
+                <div class="panel-heading">已经签到名单（共计 <b>{$signed|count}</b> 人）</div>
+                <div class="panel-body">
+                    <form action="{:U('dispatcher')}" method="post" >
+                        <table class="table table-hover">
+                            <thead>
+                                <tr><th>选择</th><th>学号</th><th>姓名</th><th>IP</th><th>时间</th></tr>
+                            </thead>
+                            <tbody>
+                        <volist name="signed" id="onePersion">
+                                <tr>
+                                    <td><input type="checkbox" name="userid[]" value="{$onePersion.id|base64_encode}"></td>
+                                    <td>{$onePersion.id}</td>
+                                    <td>{$onePersion.name}</td>
+                                    <td>{$onePersion.ip}</td>
+                                    <td>{$onePersion.time}</td>
+                                </tr>
+                        </volist>
+                            </tbody>
+                        </table>
+                        <input type="hidden" name="todo" value="{:base64_encode('unBandage')}" />
+                        <button type="submit" class="btn btn-danger pull-right"/>选中项解除绑定</button>
+                    </form>
+                </div>
+            </div>
+            <div class="panel panel-danger">
+                <div class="panel-heading">还未签到名单（共计 <b>{$unsigned|count}</b> 人）</div>
+                <div class="panel-body">
+                    <form action="{:U('dispatcher')}" method="post">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr><th>选择</th><th>学号</th><th>姓名</th></tr>
+                            </thead>
+                            <tbody>
+                                <volist name="unsigned" id="onePersion">
+                                <tr>
+                                    <td><input type="checkbox" name="userid[]" value="{$onePersion.id|base64_encode}"></td>
+                                    <td>{$onePersion.id}</td>
+                                    <td>{$onePersion.name}</td>
+                                </tr>
+                                </volist>
+                            </tbody>
+                        </table>
+                        <input type="hidden" name="todo" value="{:base64_encode('signByAdmin')}" />
+                        <button class="btn btn-danger pull-right" type="submit">选中项手工签到</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<include file="Public/footer" />

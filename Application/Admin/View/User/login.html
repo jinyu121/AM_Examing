@@ -1,0 +1,26 @@
+<include file="Public/header" />
+
+<main class="loginPage" role="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-2">
+                <img src="__PUBLIC__/images/login_pic_admin.png" class="img-responsive img-rounded">
+            </div>
+            <div class="col-sm-4">
+                <form action="{:U('loginCheck')}" method="post" role="form">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                        <input type="text" class="form-control" name="user_name" placeholder="用户名">
+                    </div>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon "><span class="glyphicon glyphicon-lock"></span></span>
+                        <input type="password" class="form-control" name="user_password" placeholder="密　码">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">芝麻开门</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<include file="Public/footer" />

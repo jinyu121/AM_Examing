@@ -1,0 +1,26 @@
+<include file="Public/header" />
+
+<main class="loginPage" role="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-2">
+                <img src="__PUBLIC__/images/login_pic.png" class="img-responsive img-rounded">
+            </div>
+            <div class="col-sm-4">
+                <form action="/Home/User/loginCheck" method="post" role="form">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon">姓名</span>
+                        <input type="text" class="form-control" name="user_name" placeholder="姓名">
+                    </div>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon ">学号</span>
+                        <input type="text" class="form-control" name="user_id" placeholder="学号">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">登录</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<include file="Public/footer" />

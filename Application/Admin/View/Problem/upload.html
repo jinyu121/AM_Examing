@@ -1,0 +1,89 @@
+<include file="Public/header" />
+
+<main role="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-info">
+                    <div class="panel-heading">上传试题</div>
+                    <div class="panel-body">
+                        <blockquote>
+                            试题上传说明：
+                            <ol>
+                                <li>请将试题压缩成<b>zip</b>压缩包，大小限制为 {$Think.config.UPLOAD_MAX_SIZE} 字节。</li>
+                                <li>压缩包内容：
+                                    <ul>
+                                        <li>
+                                            <b>info.txt</b>
+                                            <ul>
+                                                <li>第一行：文件可以被下载的开始时间。 <br />例如： <b>2014-01-01 08:30:00</b></li>
+                                                <li>第二行：试题标题</li>
+                                                <li>以下一行或者多行：试题描述。</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <b>download.zip</b>
+                                            <ul>
+                                                <li>保存可以被下载的东西</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>两个文件不能缺少，不能增多。</li>
+                                <li>压缩包内文件名区分大小写。</li>
+                                <li>可以点击 <a href="/Public/Demo.zip">这里</a> 下载样例。</li>
+                            </ol>
+                        </blockquote>
+                        <form action="{:U('uploadProblem')}" enctype="multipart/form-data" method="post" >
+                            <div class="input-group">
+                                <input type="file" name="file" class="form-control" accept="application/zip" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-success" type="submit">上传</button>
+                                </span>
+                            </div><!-- /input-group -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-info">
+                    <div class="panel-heading">已经上传的试题</div>
+                    <div class="panel-body">
+                        <div class="problems">
+                            <ul class="list-unstyled">
+                                <volist name="problems" id="oneProblem">
+                                    <li>
+                                        <div class="media">
+                                            <div class="media-image pull-left">
+                                            <span class="glyphicon glyphicon-file"></span>
+                                        </div>
+                                        <div class="pull-right">
+                                            <form action="{:U('deleteProblem')}" method="post" >
+                                                <input type="hidden" name="dir" value="{$oneProblem.dir|base64_encode}" />
+                                                <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> 删除</button>
+                                            </form>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">{$oneProblem.title}</h4>
+                                            <div class="media-info">
+                                                <ul class="list-unstyled">
+                                                    <li>开放时间： {$oneProblem.time} </li>
+                                                    <li>题目简介： {$oneProblem.description} </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                </volist>
+   
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<include file="Public/footer" />

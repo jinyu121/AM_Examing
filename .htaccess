@@ -1,0 +1,43 @@
+# URL重写规则
+<IfModule mod_rewrite.c>
+  Options +FollowSymlinks
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
+</IfModule>
+
+# 浏览器缓存规则
+<IfModule mod_expires.c>
+	ExpiresActive on
+	ExpiresByType text/css "access 1 month"
+	ExpiresByType text/plain "access 2 days"
+	ExpiresByType text/html  "access 2 days"
+	ExpiresByType application/javascript "access 1 month"
+	ExpiresByType image/jpeg "access 1 month"
+	ExpiresByType image/x-icon "access 1 month"
+	ExpiresByType image/gif "access 1 month"
+	ExpiresByType image/png "access 1 month"
+	ExpiresByType image/ico "access 1 month"
+	ExpiresByType application/pdf "access 1 month"
+	ExpiresByType application/x-shockwave-flash "access 1 month"
+	ExpiresDefault "access 1 month"
+</IfModule>
+
+# 文件夹权限规则
+<Files *>
+	Options -Indexes
+</Files>
+<Files /Uploads>
+	deny from all
+</Files>
+<Files /Problems>
+	deny from all
+</Files>
+<files .htaccess>
+	order allow,deny
+	deny from all
+</files>
+
+# 服务器安全规则
+ServerSignature Off

@@ -1,0 +1,45 @@
+<include file="Public/header" />
+
+<main role="main">
+    <div class="container">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-danger">
+                <div class="panel-heading">添加单个管理员</div>
+                <div class="panel-body">
+                    <form action="{:U('dispatcher')}" method="post" >
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                            <input type="text" name="name" class="form-control" placeholder="用户名">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-tags"></span></span>
+                            <input type="text" name="password" class="form-control" placeholder="密　码">
+                        </div>
+                        <input type="hidden" name="todo" value="{:base64_encode('addAdmin')}" />
+                        <button type="submit" class="btn btn-danger btn-block">确定添加</button>
+                    </form>
+                </div>
+            </div>
+            <div class="panel panel-danger">
+                <div class="panel-heading">已经存在的管理员（共 {$admins|count} 人）</div>
+                <div class="panel-body">
+                            <volist name="admins" id="oneAdmin">
+                                <form action="{:U('dispatcher')}" enctype="multipart/form-data" method="post" >
+                                    <input type="hidden" name="todo" value="{:base64_encode('deleteAdmin')}" /> 
+                                    <input type="hidden" name="name" value="{$oneAdmin.name|base64_encode}" /> 
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-tower"></span> {$oneAdmin.name}</span>
+                                        <input type="password" class="form-control" name="password" placeholder="输入此管理员的密码" >
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-trash"></span> 删除管理员</button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </volist>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<include file="Public/footer" />

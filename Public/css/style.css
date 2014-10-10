@@ -1,0 +1,49 @@
+*{
+    font-family:"微软雅黑";
+}
+html{
+    margin-top:50px;
+}
+main{
+    margin-top:50px;
+    min-height:450px;
+}
+.indexPageContainer h1{
+    font-size:100px;
+    margin-top:50px;
+    font-family:"微软雅黑";
+}
+.indexPageContainer blockquote{
+    margin-top:30px;
+    font-family:"微软雅黑";
+}
+.input-group{
+    margin-top:20px;
+    margin-bottom:20px;
+}
+.media{
+    margin-bottom:20px;
+}
+.media-image{
+    font-size:50px;
+}
+.media-info{
+    margin-left:20px;
+}
+.panel-heading{
+    font-size:20px;
+}
+.panel-body{
+    font-size:15px;
+}
+.copyright{
+    margin-top:50px;
+    color:#ddd;
+}
+.copyright a{
+    text-decoration:none;
+    color:#ddd;
+}
+.copyright a:hover{
+    color:#ccc;
+}
